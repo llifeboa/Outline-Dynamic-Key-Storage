@@ -47,20 +47,20 @@ class GoogleDriveStorageServiceImplIntegrationTest {
     @DisplayName("Create -> get -> update -> get -> delete -> get key")
     @Test
     void createGetUpdateGetDelete() throws IOException {
-        // Create file
+        // Create key
         var key = getService().createKey(GoogleDriveStorageServiceImplIntegrationTest.USER_ID, GoogleDriveStorageServiceImplIntegrationTest.OUTLINE_KEY);
         assertEquals(key.getUserId(), GoogleDriveStorageServiceImplIntegrationTest.USER_ID);
         assertNotNull(key.getLink());
         assertNotNull(key.getExternalId());
 
-        // Get created file
+        // Get created key
         var savedKey = getService().getKey(GoogleDriveStorageServiceImplIntegrationTest.USER_ID);
         GoogleDriveStorageServiceImplIntegrationTest.assertKeys(key, savedKey, GoogleDriveStorageServiceImplIntegrationTest.OUTLINE_KEY);
 
-        // Update file
+        // Update key
         service.updateKey(GoogleDriveStorageServiceImplIntegrationTest.USER_ID, GoogleDriveStorageServiceImplIntegrationTest.OUTLINE_KEY_2);
 
-        // Get updated file
+        // Get updated key
         savedKey = getService().getKey(GoogleDriveStorageServiceImplIntegrationTest.USER_ID);
         GoogleDriveStorageServiceImplIntegrationTest.assertKeys(key, savedKey, GoogleDriveStorageServiceImplIntegrationTest.OUTLINE_KEY_2);
 
